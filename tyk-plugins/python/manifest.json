@@ -1,0 +1,13 @@
+{
+    "file_list": [
+        "middleware.py"
+    ],
+    "custom_middleware": {
+        "auth_check": {
+            "name": "MyAuthMiddleware"
+        },
+        "driver": "python"
+    },
+    "checksum": "",
+    "signature": ""
+}

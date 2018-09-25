@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>tyk.example</groupId>
+	<artifactId>tyk-plugin-server</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+
+	<name>tyk-plugin-server</name>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.4.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+
+		<!-- 3rd party -->
+		<spring-boot.version>2.0.4.RELEASE</spring-boot.version>
+		<grpc-spring-boot-starter.version>2.4.0</grpc-spring-boot-starter.version>
+
+		<!-- Fabric8 configs -->
+		<fabric8.generator.from>fabric8/java-alpine-openjdk8-jre</fabric8.generator.from>
+		<fabric8.generator.name>${project.groupId}/${project.artifactId}:${project.version}</fabric8.generator.name>
+		<fabric8.namespace>${project.groupId}</fabric8.namespace>
+		<fabric8-maven-plugin.version>3.5.38</fabric8-maven-plugin.version>
+		<reproducible-build-maven-plugin.version>0.5.2</reproducible-build-maven-plugin.version>
+		<license-maven-plugin.version>1.16</license-maven-plugin.version>
+
+		<!-- rks library -->
+		<tyk-protobuf.version>0.0.1-SNAPSHOT</tyk-protobuf.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>coprocess</groupId>
+			<artifactId>tyk-protobuf</artifactId>
+			<version>${tyk-protobuf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.lognet</groupId>
+			<artifactId>grpc-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.lognet</groupId>
+				<artifactId>grpc-spring-boot-starter</artifactId>
+				<version>${grpc-spring-boot-starter.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>fabric8-maven-plugin</artifactId>
+				<version>${fabric8-maven-plugin.version}</version>
+				<configuration>
+					<profile>minimal</profile>
+					<verbose>true</verbose>
+					<!-- <mode>kubernetes</mode> <autoPull>always</autoPull> -->
+				</configuration>
+
+			</plugin>
+			<plugin>
+				<groupId>io.github.zlika</groupId>
+				<artifactId>reproducible-build-maven-plugin</artifactId>
+				<version>${reproducible-build-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>strip-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>strip-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

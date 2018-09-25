@@ -1,0 +1,7 @@
+It requires these environment variables should be injected to tyk-gateway
+* SESSION_CACHE_SERVICE_HOST
+* SESSION_CACHE_SERVICE_PORT_HTTP
+* EXT_LOGIN_URL
+
+#Generate the bundle file which is "python-bundle.zip"
+./build.sh

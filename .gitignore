@@ -1,0 +1,45 @@
+# Maven 
+target/
+
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea/
+.springBeans
+
+# eclipse project file
+.settings/
+.classpath
+.project
+.springBeans
+
+# Binaries
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+#*.zip
+*.tar.gz
+*.war
+*.ear
+*.sar
+*.class
+
+# Log file
+*.log
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Misc
+*.swp
+release.properties
+pom.xml.releaseBackup
+pom.xml.tag
+
+.factorypath
+.pydevproject
