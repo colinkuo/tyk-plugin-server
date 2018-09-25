@@ -40,12 +40,11 @@
 	</properties>
 
 	<dependencies>
+		<!-- https://packagecloud.io/colinkuo/repo/maven2 -->
 		<dependency>
 			<groupId>coprocess</groupId>
 			<artifactId>tyk-protobuf</artifactId>
-			<version>${tyk-protobuf.version}</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/tyk-protobuf-0.0.1-SNAPSHOT.jar</systemPath>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -124,7 +123,8 @@
 				<configuration>
 					<profile>minimal</profile>
 					<verbose>true</verbose>
-					<!-- <mode>kubernetes</mode> <autoPull>always</autoPull> -->
+					<mode>kubernetes</mode> 
+					<autoPull>always</autoPull>
 				</configuration>
 
 			</plugin>
@@ -147,12 +147,23 @@
 
 	<repositories>
 		<repository>
-		    <id>spring-plugin-repo</id>
+			<id>spring-plugin-repo</id>
 			<url>http://repo.spring.io/plugins-release/</url>
 		</repository>
 		<repository>
-		    <id>spring-lib-m-repo</id>
+			<id>spring-lib-m-repo</id>
 			<url>http://repo.spring.io/libs-milestone/</url>
+		</repository>
+
+		<repository>
+			<id>colinkuo-repo</id>
+			<url>https://packagecloud.io/colinkuo/repo/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 </project>
