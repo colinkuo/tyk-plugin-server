@@ -1,4 +1,4 @@
 language: java
 sudo: false # faster builds
 
-script: "mvn clean compile install -DskipTests"
+script: "mvn clean compile install fabric8:build -DskipTests"
