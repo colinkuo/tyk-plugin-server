@@ -1,4 +1,14 @@
 language: java
-sudo: false # faster builds
 
-script: "mvn clean compile install fabric8:build -DskipTests"
+sudo: required
+
+services:
+  - docker
+
+script: "mvn clean compile install fabric8:build"
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
