@@ -128,7 +128,6 @@
 				</configuration>
 
 			</plugin>
-			<!-- comment out this plugin to make docker push uploading the image 
 			<plugin>
 				<groupId>io.github.zlika</groupId>
 				<artifactId>reproducible-build-maven-plugin</artifactId>
@@ -143,7 +142,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			 -->
 		</plugins>
 	</build>
 
